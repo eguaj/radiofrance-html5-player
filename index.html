@@ -40,13 +40,17 @@ body {
 	border: 0.25em solid gray;
 	padding: 0.25em;
 }
-#pauseButton {
-	background-color: #faa;
-	width: 33%;
-}
 #playButton {
 	background-color: #afa;
-	width: 33%;
+	width: 25%;
+}
+#pauseButton {
+	background-color: #ffa;
+	width: 25%;
+}
+#stopButton {
+	background-color: #faa;
+	width: 25%;
 }
 	</style>
 </head>
@@ -62,6 +66,7 @@ body {
 		<div class="player-controls">
 			<div id="playButton" class="button">Play</div>
 			<div id="pauseButton" class="button">Pause</div>
+			<div id="stopButton" class="button">Stop</div>
 		</div>
 
 		<div class="player-sources">
@@ -102,6 +107,11 @@ body {
 		});
 		$("#pauseButton").bind('click', function() {
 			$("#audioElement").get(0).pause();
+		});
+		$("#stopButton").bind('click', function() {
+			$("#audioElement").get(0).pause();
+			$("#audioElement").get(0).src = "";
+			$("#sourceList .audiosource").removeClass("selected");
 		});
 	</script>
 </body>
