@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Radio France HTML5 Player</title>
+
+	<meta name="viewport" content="initial-scale=1.0" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+	<style>
+body {
+	font-family: sans-serif;
+	background-color: white;;
+}
+#sourceList {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+#sourceList .audiosource {
+	background-color: lightgray;
+	border: 0.25em solid gray;
+	margin: 0.25em;
+	padding: 0.25em;
+}
+#sourceList .audiosource.selected {
+	border: 0.25em solid black;
+	background-color: lightblue;
+}
+.player-controls {
+	width: 100%;
+	white-space: nowrap;
+	margin: 0.25em;
+	text-align: center;
+}
+.player-controls .button {
+	display: inline-block;
+	border: 0.25em solid gray;
+	padding: 0.25em;
+}
+#pauseButton {
+	background-color: #faa;
+	width: 33%;
+}
+#playButton {
+	background-color: #afa;
+	width: 33%;
+}
+	</style>
+</head>
+
+<body>
+
+	<div class="player">
+
+		<audio id="audioElement">
+			HTML5 audio not supported.
+		</audio>
+
+		<div class="player-controls">
+			<div id="playButton" class="button">Play</div>
+			<div id="pauseButton" class="button">Pause</div>
+		</div>
+
+		<div class="player-sources">
+			<ul id="sourceList">
+				<!-- France Inter -->
+				<li class="HQ audiosource" data-src="http://mp3.live.tv-radio.com/franceinter/all/franceinterhautdebit.mp3" >France Inter (HQ)</li>
+				<li class="LQ audiosource" data-src="http://mp3.live.tv-radio.com/franceinter/all/franceinter-32k.mp3" >France Inter (LQ)</li>
+				<!-- France Info -->
+				<li class="HQ audiosource" data-src="http://mp3.live.tv-radio.com/franceinfo/all/franceinfo.mp3" >France Info (HQ)</li>
+				<li class="LQ audiosource" data-src="http://mp3.live.tv-radio.com/franceinfo/all/franceinfo-32k.mp3" >France Info (LQ)</li>
+				<!-- France Culture -->
+				<li class="HQ audiosource" data-src="http://mp3.live.tv-radio.com/franceculture/all/franceculturehautdebit.mp3" >France Culture (HQ)</li>
+				<li class="LQ audiosource" data-src="http://mp3.live.tv-radio.com/franceculture/all/franceculture-32k.mp3" >France Culture (LQ)</li>
+				<!-- France Musique -->
+				<li class="HQ audiosource" data-src="http://mp3.live.tv-radio.com/francemusique/all/francemusiquehautdebit.mp3">France Musique (HQ)</li>
+				<li class="LQ audiosource" data-src="http://mp3.live.tv-radio.com/francemusique/all/francemusique-32k.mp3">France Musique (LQ)</li>
+				<!-- FIP -->
+				<li class="HQ audiosource" data-src="http://mp3.live.tv-radio.com/fip/all/fiphautdebit.mp3">FIP (HQ)</li>
+				<li class="LQ audiosource" data-src="http://mp3.live.tv-radio.com/fip/all/fip-32k.mp3">FIP (LQ)</li>
+				<!-- Le Mouv' -->
+				<li class="HQ audiosource" data-src="http://mp3.live.tv-radio.com/lemouv/all/lemouvhautdebit.mp3">Le Mouv' (HQ)</li>
+				<li class="LQ audiosource" data-src="http://mp3.live.tv-radio.com/lemouv/all/lemouv-32k.mp3">Le Mouv' (LQ)</li>
+				<!-- France Bleu Ile-de-France -->
+				<li class="HQ audiosource" data-src="http://mp3.live.tv-radio.com/fbidf/all/fbidfhautdebit.mp3">France Bleu Ile-de-France (HQ)</li>
+				<li class="LQ audiosource" data-src="http://mp3.live.tv-radio.com/fbidf/all/fbidf-32k.mp3">France Bleu Ile-de-France (LQ)</li>
+			</ul>
+		</div>
+	</div>
+
+	<script>
+		$(".audiosource").bind('click', function() {
+			$("#sourceList .audiosource").removeClass("selected");
+			$(this).addClass("selected");
+			$("#audioElement").attr("src", $(this).data("src")).get(0).play();
+		});
+		$("#playButton").bind('click', function() {
+			$("#audioElement").get(0).play();
+		});
+		$("#pauseButton").bind('click', function() {
+			$("#audioElement").get(0).pause();
+		});
+	</script>
+</body>
+</html>
