@@ -18,6 +18,10 @@ body {
 	list-style: none;
 	margin: 0;
 	padding: 0;
+	display: flex;
+	display: -webkit-flex;
+	flex-direction: column;
+	-webkit-flex-direction: column;
 }
 #sourceList .audiosource {
 	background-color: lightgray;
@@ -30,27 +34,30 @@ body {
 	background-color: lightblue;
 }
 .player-controls {
-	width: 100%;
 	white-space: nowrap;
-	margin: 0.25em;
 	text-align: center;
+	display: flex;
+	display: -webkit-flex;
+	justify-content: center;
+	-webkit-justify-content: center;
 }
 .player-controls .button {
 	display: inline-block;
 	border: 0.25em solid gray;
 	padding: 0.25em;
+	margin: 0.25em;
 }
 #playButton {
 	background-color: #afa;
-	width: 25%;
+	width: 33%;
 }
 #pauseButton {
 	background-color: #ffa;
-	width: 25%;
+	width: 33%;
 }
 #stopButton {
 	background-color: #faa;
-	width: 25%;
+	width: 33%;
 }
 	</style>
 </head>
