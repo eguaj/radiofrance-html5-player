@@ -3,11 +3,14 @@
 <head>
 	<title>Radio France HTML5 Player</title>
 
+	<meta name="charset" content="UTF-8" />
 	<meta name="viewport" content="initial-scale=1.0" />
 	<meta name="apple-mobile-web-app-capable" content="yes" />
 	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
 
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 
 	<style>
 body {
@@ -32,6 +35,9 @@ body {
 #sourceList .audiosource.selected {
 	border: 0.25em solid black;
 	background-color: lightblue;
+}
+#sourceList .audiosource.selected.paused {
+	background-color: lightyellow;
 }
 .player-controls {
 	white-space: nowrap;
@@ -71,9 +77,9 @@ body {
 		</audio>
 
 		<div class="player-controls">
-			<div id="playButton" class="button">Play</div>
-			<div id="pauseButton" class="button">Pause</div>
-			<div id="stopButton" class="button">Stop</div>
+			<div id="playButton" class="button"><i class="fa fa-play"></i>&nbsp;Play</div>
+			<div id="pauseButton" class="button"><i class="fa fa-pause"></i>&nbsp;Pause</div>
+			<div id="stopButton" class="button"><i class="fa fa-stop"></i>&nbsp;Stop</div>
 		</div>
 
 		<div class="player-sources">
@@ -111,14 +117,17 @@ body {
 		});
 		$("#playButton").bind('click', function() {
 			$("#audioElement").get(0).play();
+			
+			$("#sourceList .audiosource.selected").removeClass('paused');
 		});
 		$("#pauseButton").bind('click', function() {
 			$("#audioElement").get(0).pause();
+			$("#sourceList .audiosource.selected").addClass('paused');
 		});
 		$("#stopButton").bind('click', function() {
 			$("#audioElement").get(0).pause();
 			$("#audioElement").get(0).src = "";
-			$("#sourceList .audiosource").removeClass("selected");
+			$("#sourceList .audiosource").removeClass("selected").removeClass('paused');
 		});
 	</script>
 </body>
